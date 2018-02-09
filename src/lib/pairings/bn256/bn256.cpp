@@ -48,24 +48,28 @@ class Params
 
       static const BigInt& R1()
          {
+         // 2**256 % p
          static const BigInt R1("0x704afe1cb55c7806559013479e7b23de11a4772edf4a4a61e7a35393a1f76999");
          return R1;
          };
 
       static const BigInt& R2()
          {
+         // (R*R) % p
          static const BigInt R2("0x7c36e0e62c2380b70c6dc37b80fb1651409ed151b2efb0c29c21c3ff7e444f56");
          return R2;
          };
 
       static const BigInt& R3()
          {
+         // (R*R*R) % p
          static const BigInt R3("0x24ebbbb3a2529292df2ff66396b107a7388f899054f538a42af2dfb9324a5bb8");
          return R3;
          };
 
       static const BigInt& N()
          {
+         //N = R1 - inverse_mod(p, R1)
          static const BigInt N("0x38997ae661c3ef3c2524282f48054c12734b3343ab8513c82387f9007f17daa9");
          return N;
          }
@@ -1414,7 +1418,7 @@ BN_256::G2 BN_256::g2_generator() const
 
 const BigInt& BN_256::order() const
    {
-   return BN_256_Impl::Params::N();
+   return BN_256_Impl::Params::order();
    }
 
 BN_256::GT BN_256::pairing(const BN_256::G1& g1, const BN_256::G2& g2) const
